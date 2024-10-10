@@ -10,11 +10,46 @@ export function MainContent() {
   useHandleKeypress();
   useHandleScroll();
 
+
+// // Función para enviar los datos una vez completados
+// const handleSubmit = async () => {
+//   try {
+//     const response = await fetch("/api/hello", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         nombre: personaState.firstName,
+//         apellido: personaState.lastName,
+//         sexo: personaState.sexo,
+//         compania: personaState.compania,
+//         edad: personaState.edad,
+//         tecnologias: personaState.tecnologias,
+//         correo: personaState.correo,
+//         fechaCumpleanos: personaState.fechaCumpleanos,
+//         puntuacion: personaState.puntuacion,
+//       }),
+//     });
+
+//     const data = await response.json();
+//     console.log("Respuesta del servidor:", data);
+//   } catch (error) {
+//     console.error("Error al enviar los datos:", error);
+//   }
+// };
+
+
   useEffect(() => {
     function handleClick() {
       setShowIndustriesList(false);
     }
-
+// // Este useEffect podría usarse para detectar cuando el usuario ha completado las preguntas
+// useEffect(() => {
+//   if (now === 8) {
+//     handleSubmit(); // Enviar datos cuando se llega al final de las preguntas
+//   }
+// }, [now]);
     document.addEventListener("click", handleClick);
 
     return function () {
