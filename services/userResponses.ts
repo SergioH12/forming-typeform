@@ -5,8 +5,8 @@ import db from "@/utils/db";
 export async function insertUserResponse(data: {
   nombre: string;
   apellido: string;
-  sexo: string;
   compania: string;
+  sexo: string;
   edad: string;
   tecnologias: string[];
   correo: string;
