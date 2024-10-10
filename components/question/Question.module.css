@@ -227,3 +227,41 @@
     opacity: 1;
   }
 }
+
+/*** Mejora visual para el calendario ***/
+
+/***
+.datepicker-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.custom-datepicker {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease-in-out;
+}
+
+.custom-datepicker:focus {
+  border-color: #0070f3;
+  outline: none;
+}
+
+**/
+/**.react-datepicker__header {
+  background-color: #0070f3; /* Cambia el color del encabezado del calendario */
+/**}
+
+.react-datepicker__day--selected {
+  background-color: #0070f3; /* Cambia el color del día seleccionado */
+/**color: white;
+/**}
+
+/**.react-datepicker__day:hover {
+  background-color: #ddd; /* Color de fondo para el hover en los días */
+/**}**/

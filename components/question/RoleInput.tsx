@@ -38,11 +38,11 @@ export function RoleInput() {
   return (
     <>
       <QuestionNumHeading questionNum={4}>
-        Your role in your company? *
+        ¿Cuál es tu genero? *
       </QuestionNumHeading>
 
       <QuestionBoxPara>
-        We want to understand how you spend your time right now.
+        Este es el momento de seleecionar logicas.
       </QuestionBoxPara>
 
       <DropdownSelect className={styles["role-dropdown"]}>

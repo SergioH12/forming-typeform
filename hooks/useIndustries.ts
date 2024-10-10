@@ -1,5 +1,17 @@
 import { useEffect, useState } from "react";
+import industriesData from "../public/lists/list_industries.json"; // Importa el archivo JSON
 
+export function useIndustries() {
+  const [industries, setIndustries] = useState<string[]>([]);
+
+  useEffect(() => {
+    setIndustries(industriesData); // Usa los datos importados directamente
+  }, []);
+
+  return { industries };
+}
+
+/*
 export function useIndustries() {
   const [industries, setIndustries] = useState<string[]>([]);
   const industryResourceURL =
@@ -19,3 +31,4 @@ export function useIndustries() {
 
   return { industries };
 }
+*/

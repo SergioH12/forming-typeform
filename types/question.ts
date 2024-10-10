@@ -13,7 +13,9 @@ export type QuestionProps = {
     | "industry"
     | "role"
     | "goal"
-    | "email";
+    | "email"
+    | "age"
+    | "date";
 };
 
 export type IndustriesProps = {

@@ -135,7 +135,7 @@ export function QuestionInputIndustries({
     >
       <QuestionInputText
         className={styles["dropdown-select__input"]}
-        placeholder="Type or select an option"
+        placeholder="Escribe o selecciona una opción"
         value={localIndustry}
         onChange={handleInputChange}
         ref={inputTextRef}

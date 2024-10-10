@@ -32,11 +32,11 @@ export function FirstNameInput() {
   return (
     <>
       <QuestionNumHeading questionNum={1}>
-        What&apos;s your first name? *
+        ¿Cuál es tu primer nombre? *
       </QuestionNumHeading>
 
       <QuestionInputText
-        placeholder="Type your answer here..."
+        placeholder="Escribe tu respuesta aquí..."
         value={firstName}
         onChange={handleInputChange}
       />

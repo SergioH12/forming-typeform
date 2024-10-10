@@ -23,11 +23,11 @@ export function IndustryInput() {
   return (
     <>
       <QuestionNumHeading questionNum={3}>
-        What industry is your company in? *
+        ¿En cual compañias laboras? *
       </QuestionNumHeading>
 
       <QuestionBoxPara>
-        We will personalize your learning experience accordingly
+        Esta sera una respuesta personalizada de acuerdo a su experiencia
       </QuestionBoxPara>
 
       <QuestionInputIndustries

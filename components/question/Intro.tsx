@@ -7,19 +7,29 @@ export function Intro() {
   return (
     <>
       <QuestionBoxHeading>
-        Up-skilling requires time commitment
+        <strong>
+          Consentimiento Informado para la Evaluación de Motivación Laboral
+        </strong>
       </QuestionBoxHeading>
       <QuestionBoxPara>
-        The GrowthX experience is designed by keeping in mind the working hours
-        founders &amp; full time operators typically work in.
+        El propósito de este consentimiento es informarte acerca del proceso de
+        recolección de datos con motivo de la evaluación de Motivación Laboral
+        de (Nombre de la empresa). Solicitamos tu colaboración y sinceridad para
+        contestar las preguntas del presente formulario.
+        <br />
+        Esta evaluación tiene como objetivo identificar los tipos de motivadores
+        intrínsecos y extrínsecos que influyen en los colaboradores. No se mide
+        el nivel de motivación, sino los factores que son más relevantes para
+        cada individuo. Los resultados se analizarán a nivel individual y
+        organizacional.
         <br />
         <br />
-        You will spend
-        <br />- 6 hours/week for the first 5 weeks
-        <br />- 15 hours/week for the last 3 weeks
+        Si deseas obtener más información sobre este estudio o presentas dudas e
+        inquietudes acerca de tu participación, podrás comunicarte al siguiente
+        correo electrónico: info@ioda-analytics.com.
       </QuestionBoxPara>
       <BtnContainer showPressEnter={true} onClick={handleOkClick}>
-        I agree
+        Acepto
       </BtnContainer>
     </>
   );

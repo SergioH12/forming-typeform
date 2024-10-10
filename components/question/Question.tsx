@@ -8,6 +8,8 @@ import {
   Intro,
   LastNameInput,
   RoleInput,
+  AgeInput,
+  DateInput,
 } from "./index";
 import styles from "./Question.module.css";
 
@@ -38,6 +40,8 @@ export function Question({
       {type === "role" && <RoleInput />}
       {type === "goal" && <GoalInput />}
       {type === "email" && <EmailInput />}
+      {type === "age" && <AgeInput />}
+      {type === "date" && <DateInput />}
     </div>
   );
 }

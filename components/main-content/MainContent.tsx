@@ -92,6 +92,26 @@ export function MainContent() {
             outView={[now - 1, now + 1].includes(6)}
             outViewSlide={now - 1 === 6 ? "up" : "down"}
             inView={now === 6}
+            inViewSlide={prev === 5 ? "down" : "up"}
+          />
+        )}
+
+        {prev === 6 && [now - 1, now, now + 1].includes(7) && (
+          <Question
+            type="age"
+            outView={[now - 1, now + 1].includes(7)}
+            outViewSlide={now - 1 === 7 ? "up" : "down"}
+            inView={now === 7}
+            inViewSlide={prev === 6 ? "down" : "up"}
+          />
+        )}
+
+        {prev === 7 && [now - 1, now, now + 1].includes(8) && (
+          <Question
+            type="date"
+            outView={[now - 1, now + 1].includes(8)}
+            outViewSlide={now - 1 === 8 ? "up" : "down"}
+            inView={now === 8}
             inViewSlide={"up"}
           />
         )}

@@ -5,6 +5,8 @@ export const questionsInitialState = {
   role: "",
   goals: [],
   email: "",
+  age: "",
+  date: "",
 };
 
 export type QuestionsStateType = {
@@ -14,4 +16,6 @@ export type QuestionsStateType = {
   role: string;
   goals: string[];
   email: string;
+  age: string;
+  date: string;
 };

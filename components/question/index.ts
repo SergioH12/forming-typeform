@@ -5,3 +5,5 @@ export { IndustryInput } from "./IndustryInput";
 export { Intro } from "./Intro";
 export { LastNameInput } from "./LastNameInput";
 export { RoleInput } from "./RoleInput";
+export { AgeInput } from "./NumberInput_Age";
+export { DateInput } from "./DateInput";

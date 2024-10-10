@@ -1,43 +1,51 @@
-import { SET_LAST_NAME } from "@/reducers";
 import { ChangeEventHandler } from "react";
+import { useQuestions, useSharedStates } from "@/contexts";
 import {
   BtnContainer,
   Error,
+  QuestionBoxPara,
   QuestionInputText,
   QuestionNumHeading,
 } from "../index";
-import classNames from "classnames";
 import styles from "./Question.module.css";
-import Image from "next/image";
-import { useQuestions, useSharedStates } from "@/contexts";
+import classNames from "classnames";
+import { SET_AGE } from "@/reducers";
 
-export function LastNameInput() {
+export function AgeInput() {
   const { errorMsg: error, setErrorMsg, handleOkClick } = useSharedStates();
   const { state, dispatch } = useQuestions();
 
-  const errorMsg = error.lastName ?? "";
-  const { firstName, lastName } = state;
+  const errorMsg = error.age ?? "";
+  const { age } = state;
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    errorMsg &&
-      setErrorMsg &&
+    const value = event.target.value;
+    if (!/^\d+$/.test(value)) return; // Asegurarse de que solo se ingrese números
+
+    setErrorMsg &&
       setErrorMsg((prevValue) => {
-        delete prevValue.lastName;
+        delete prevValue.age;
         return prevValue;
       });
 
-    dispatch({ type: SET_LAST_NAME, payload: event.target.value });
+    dispatch({ type: SET_AGE, payload: value });
   };
 
   return (
     <>
-      <QuestionNumHeading questionNum={2}>
-        {firstName}, ¿Cuál es tu apellido? *
+      <QuestionNumHeading questionNum={7}>
+        {" "}
+        ¿Cuál es tu edad? *
       </QuestionNumHeading>
 
+      <QuestionBoxPara>
+        Por favor ingresa tu edad usando únicamente números.
+      </QuestionBoxPara>
+
       <QuestionInputText
-        placeholder="Escribe tu respuesta aquí..."
-        value={lastName}
+        type="number"
+        placeholder="Ingresa tu edad"
+        value={age}
         onChange={handleInputChange}
       />
 
@@ -49,13 +57,7 @@ export function LastNameInput() {
           showPressEnter={true}
           onClick={handleOkClick}
         >
-          OK{" "}
-          <Image
-            src="/check-small.svg"
-            alt="check small"
-            width={34}
-            height={34}
-          />
+          OK
         </BtnContainer>
       )}
     </>

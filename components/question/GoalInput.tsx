@@ -23,7 +23,7 @@ export function GoalInput() {
   const goalsOptions = useMemo(
     () =>
       getGoals(
-        role.toLowerCase().includes("founder") ? "FOUNDER" : "NON_FOUNDER"
+        role.toLowerCase().includes("masculino") ? "TECNOLOGIES" : "NON_FOUNDER" //Aca hace el tema de condiciones para mandar por logicas
       ),
     [role]
   );
