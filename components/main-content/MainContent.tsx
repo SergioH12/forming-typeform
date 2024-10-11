@@ -1,34 +1,15 @@
-import { useSharedStates } from "@/contexts";
+import { useQuestions, useSharedStates } from "@/contexts";
 import { useHandleKeypress, useHandleScroll } from "@/hooks";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Question } from "../index";
 
 export function MainContent() {
-  const { questionNum, setShowIndustriesList, personaState } =
-    useSharedStates();
+  const { questionNum, setShowIndustriesList } = useSharedStates();
   const { prev, now } = questionNum;
+  const { state } = useQuestions();
 
   useHandleKeypress();
   useHandleScroll();
-
-
-  // Función para manejar el envío de los datos al servidor
-  const handleSubmit = async () => {
-    try {
-      const response = await fetch("/api/hello", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-      console.log("Respuesta del servidor:", data);
-    } catch (error) {
-      console.error("Error al enviar los datos:", error);
-    }
-  };
 
   useEffect(() => {
     function handleClick() {
@@ -37,30 +18,30 @@ export function MainContent() {
 
     document.addEventListener("click", handleClick);
 
-    // Cuando el usuario llega al final de las preguntas (índice 8), enviar los datos
-    if (now === 8) {
-      // Aquí recogemos todos los datos desde el estado de `personaState`
-      setFormData({
-        nombre: personaState.firstName,
-        apellido: personaState.lastName,
-        sexo: personaState.sexo,
-        compania: personaState.compania,
-        edad: personaState.edad,
-        tecnologias: personaState.tecnologias,
-        correo: personaState.correo,
-        fechaCumpleanos: personaState.fechaCumpleanos,
-        puntuacion: personaState.puntuacion,
-      });
-
-      handleSubmit(); // Enviar los datos cuando se llega al final de las preguntas
-    }
-
     return function () {
       document.removeEventListener("click", handleClick);
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [now]);
+  }, []);
+
+  // Función para manejar el envío del formulario al backend
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("/api/hello", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(state), // Enviamos todos los datos del estado
+      });
+
+      const data = await response.json();
+      console.log("Datos enviados:", data);
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+    }
+  };
 
   return (
     <section>
@@ -153,6 +134,9 @@ export function MainContent() {
             inViewSlide={"up"}
           />
         )}
+
+        {/* Agregar botón de envío al final del formulario */}
+        <button onClick={handleSubmit}>Enviar</button>
       </div>
     </section>
   );
