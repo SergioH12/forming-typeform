@@ -1,63 +1,77 @@
 import { useSharedStates } from "@/contexts";
 import { useHandleKeypress, useHandleScroll } from "@/hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Question } from "../index";
 
 export function MainContent() {
-  const { questionNum, setShowIndustriesList } = useSharedStates();
+  const { questionNum, setShowIndustriesList, personaState } =
+    useSharedStates();
   const { prev, now } = questionNum;
 
   useHandleKeypress();
   useHandleScroll();
 
+  const [formData, setFormData] = useState({
+    nombre: "",
+    apellido: "",
+    sexo: "",
+    compania: "",
+    edad: 0,
+    tecnologias: "",
+    correo: "",
+    fechaCumpleanos: "",
+    puntuacion: 0,
+  });
 
-// // Función para enviar los datos una vez completados
-// const handleSubmit = async () => {
-//   try {
-//     const response = await fetch("/api/hello", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         nombre: personaState.firstName,
-//         apellido: personaState.lastName,
-//         sexo: personaState.sexo,
-//         compania: personaState.compania,
-//         edad: personaState.edad,
-//         tecnologias: personaState.tecnologias,
-//         correo: personaState.correo,
-//         fechaCumpleanos: personaState.fechaCumpleanos,
-//         puntuacion: personaState.puntuacion,
-//       }),
-//     });
+  // Función para manejar el envío de los datos al servidor
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("/api/hello", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-//     const data = await response.json();
-//     console.log("Respuesta del servidor:", data);
-//   } catch (error) {
-//     console.error("Error al enviar los datos:", error);
-//   }
-// };
-
+      const data = await response.json();
+      console.log("Respuesta del servidor:", data);
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+    }
+  };
 
   useEffect(() => {
     function handleClick() {
       setShowIndustriesList(false);
     }
-// // Este useEffect podría usarse para detectar cuando el usuario ha completado las preguntas
-// useEffect(() => {
-//   if (now === 8) {
-//     handleSubmit(); // Enviar datos cuando se llega al final de las preguntas
-//   }
-// }, [now]);
+
     document.addEventListener("click", handleClick);
+
+    // Cuando el usuario llega al final de las preguntas (índice 8), enviar los datos
+    if (now === 8) {
+      // Aquí recogemos todos los datos desde el estado de `personaState`
+      setFormData({
+        nombre: personaState.firstName,
+        apellido: personaState.lastName,
+        sexo: personaState.sexo,
+        compania: personaState.compania,
+        edad: personaState.edad,
+        tecnologias: personaState.tecnologias,
+        correo: personaState.correo,
+        fechaCumpleanos: personaState.fechaCumpleanos,
+        puntuacion: personaState.puntuacion,
+      });
+
+      handleSubmit(); // Enviar los datos cuando se llega al final de las preguntas
+    }
 
     return function () {
       document.removeEventListener("click", handleClick);
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [now]);
 
   return (
     <section>

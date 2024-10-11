@@ -1,22 +1,37 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { insertUserResponse } from "@/services/userResponses"; // Ruta hacia el servicio
+import { insertUserResponse } from "@/services/userResponses"; // Ajusta la ruta al servicio de base de datos donde guardas los datos
 
-
+// Define el tipo de respuesta esperado
 type Data = {
-  name: string;
+  message: string;
 };
 
+// Handler para la ruta API
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<Data>
 ) {
   if (req.method === "POST") {
     try {
-      // Obtener los datos del cuerpo de la petición
-      const { nombre, apellido, sexo, compania, edad, tecnologias, correo, fechaCumpleanos, puntuacion } = req.body;
+      // Extrae los datos del cuerpo de la petición
+      const {
+        nombre,
+        apellido,
+        sexo,
+        compania,
+        edad,
+        tecnologias,
+        correo,
+        fechaCumpleanos,
+        puntuacion,
+      } = req.body;
 
-      // Insertar los datos en la base de datos
+      // Validación básica para asegurarnos de que los campos necesarios están presentes
+      if (!nombre || !apellido || !correo) {
+        return res.status(400).json({ message: "Faltan campos obligatorios" });
+      }
+
+      // Llama a la función para insertar la respuesta en la base de datos
       await insertUserResponse({
         nombre,
         apellido,
@@ -25,19 +40,18 @@ export default async function handler(
         edad,
         tecnologias,
         correo,
-        fechaCumpleanos: new Date(fechaCumpleanos),
+        fechaCumpleanos: new Date(fechaCumpleanos), // Asegura que la fecha sea un objeto Date
         puntuacion,
       });
 
-      // Responder con éxito
+      // Responde con éxito
       res.status(200).json({ message: "Datos guardados correctamente" });
     } catch (error) {
       console.error("Error al guardar los datos:", error);
-      res.status(500).json({ error: "Hubo un error al guardar los datos" });
+      res.status(500).json({ message: "Hubo un error al guardar los datos" });
     }
   } else {
-    // Manejar otros métodos HTTP si es necesario
-    res.status(405).json({ error: "Método no permitido" });
+    // Maneja otros métodos HTTP si es necesario, pero no permitimos más que POST
+    res.status(405).json({ message: "Método no permitido" });
   }
 }
-

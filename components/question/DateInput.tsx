@@ -28,7 +28,7 @@ const DatePickerGlobalStyles = createGlobalStyle`
   }
 
   .react-datepicker__header {
-    background-color: #291850;
+    background-color: #54205e;
     color: #ffffff;
     padding: 0;
     border-bottom: none;
@@ -198,7 +198,7 @@ export function DateInput() {
                 className="nav-button"
                 onClick={() => changeMonth(date.getMonth() - 1)}
               >
-                {"⏪"}
+                {"◀︎"}
               </button>
               <select
                 value={format(date, "MMMM", { locale: es })}
@@ -233,7 +233,7 @@ export function DateInput() {
                 className="nav-button"
                 onClick={() => changeMonth(date.getMonth() + 1)}
               >
-                {"⏩"}
+                {"▶︎"}
               </button>
             </div>
           )}
