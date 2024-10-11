@@ -11,17 +11,6 @@ export function MainContent() {
   useHandleKeypress();
   useHandleScroll();
 
-  const [formData, setFormData] = useState({
-    nombre: "",
-    apellido: "",
-    sexo: "",
-    compania: "",
-    edad: 0,
-    tecnologias: "",
-    correo: "",
-    fechaCumpleanos: "",
-    puntuacion: 0,
-  });
 
   // Función para manejar el envío de los datos al servidor
   const handleSubmit = async () => {
