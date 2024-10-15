@@ -15,7 +15,8 @@ export type QuestionProps = {
     | "goal"
     | "email"
     | "age"
-    | "date";
+    | "date"
+    | "score";
 };
 
 export type IndustriesProps = {

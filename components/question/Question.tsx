@@ -10,6 +10,7 @@ import {
   RoleInput,
   AgeInput,
   DateInput,
+  ScoreInput,
 } from "./index";
 import styles from "./Question.module.css";
 
@@ -42,6 +43,7 @@ export function Question({
       {type === "email" && <EmailInput />}
       {type === "age" && <AgeInput />}
       {type === "date" && <DateInput />}
+      {type === "score" && <ScoreInput />}
     </div>
   );
 }

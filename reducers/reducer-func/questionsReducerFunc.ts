@@ -10,6 +10,7 @@ import {
   SET_EMAIL,
   SET_AGE,
   SET_DATE,
+  SET_SCORE,
 } from "../index";
 
 export function questionsReducerFunc(
@@ -46,6 +47,9 @@ export function questionsReducerFunc(
 
     case SET_DATE:
       return { ...state, date: action.payload };
+
+    case SET_SCORE:
+      return { ...state, score: action.payload };
 
     default:
       return state;

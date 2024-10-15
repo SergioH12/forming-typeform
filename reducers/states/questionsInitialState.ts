@@ -7,6 +7,7 @@ export const questionsInitialState = {
   email: "",
   age: "",
   date: "",
+  score: "",
 };
 
 export type QuestionsStateType = {
@@ -18,4 +19,5 @@ export type QuestionsStateType = {
   email: string;
   age: string;
   date: string;
+  score: string;
 };

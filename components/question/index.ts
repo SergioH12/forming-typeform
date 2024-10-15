@@ -7,3 +7,4 @@ export { LastNameInput } from "./LastNameInput";
 export { RoleInput } from "./RoleInput";
 export { AgeInput } from "./NumberInput_Age";
 export { DateInput } from "./DateInput";
+export { ScoreInput } from "./NumberInput_score";

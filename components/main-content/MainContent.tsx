@@ -28,15 +28,28 @@ export function MainContent() {
   // Función para manejar el envío del formulario al backend
   const handleSubmit = async () => {
     try {
+      const transformedState = {
+        nombre: state.firstName || null, // Si es undefined, asigna null
+        apellido: state.lastName || null,
+        sexo: state.role || null,
+        compania: state.industry || null,
+        edad: state.age || null,
+        tecnologias: state.goals || [], // Asegúrate de que sea un array
+        correo: state.email || null,
+        fechaCumpleanos: new Date(state.date) || null, // Convierte a Date
+        puntuacion: Number(state.score) || null, // Convierte a número
+      };
+
       const response = await fetch("/api/hello", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(state), // Enviamos todos los datos del estado
+        body: JSON.stringify(transformedState),
       });
 
       const data = await response.json();
+      console.log(transformedState);
       console.log("Datos enviados:", data);
     } catch (error) {
       console.error("Error al enviar los datos:", error);
@@ -131,6 +144,16 @@ export function MainContent() {
             outView={[now - 1, now + 1].includes(8)}
             outViewSlide={now - 1 === 8 ? "up" : "down"}
             inView={now === 8}
+            inViewSlide={prev === 7 ? "down" : "up"}
+          />
+        )}
+
+        {prev === 8 && [now - 1, now, now + 1].includes(9) && (
+          <Question
+            type="score"
+            outView={[now - 1, now + 1].includes(9)}
+            outViewSlide={now - 1 === 9 ? "up" : "down"}
+            inView={now === 9}
             inViewSlide={"up"}
           />
         )}

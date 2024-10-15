@@ -7,6 +7,7 @@ export const REMOVE_GOAL = "REMOVE_GOAL";
 export const SET_EMAIL = "SET_EMAIL";
 export const SET_AGE = "SET_AGE";
 export const SET_DATE = "SET_DATE";
+export const SET_SCORE = "SET_SCORE";
 
 export type QuestionsActionsType =
   | { type: "SET_FIRST_NAME"; payload: string }
@@ -23,4 +24,5 @@ export type QuestionsActionsType =
   | { type: "REMOVE_GOAL"; payload: string }
   | { type: "SET_EMAIL"; payload: string }
   | { type: "SET_DATE"; payload: string }
-  | { type: "SET_AGE"; payload: string };
+  | { type: "SET_AGE"; payload: string }
+  | { type: "SET_SCORE"; payload: string };
