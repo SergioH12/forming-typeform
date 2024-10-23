@@ -3,7 +3,7 @@
   background-color: var(--dropdown-background-color);
   border: thin solid var(--para-text-color);
   border-radius: 4px;
-  color: var(--btn-text-color);
+  color: var(--heading-color);
   cursor: pointer;
   display: flex;
   font-size: 2rem;

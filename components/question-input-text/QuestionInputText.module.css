@@ -2,7 +2,7 @@
   background-color: transparent;
   border: none;
   border-bottom: thin solid var(--placeholder-color);
-  color: var(--btn-text-color);
+  color: var(--heading-color);
   font-size: 3rem;
   margin-top: 36px;
   padding-bottom: 8px;
@@ -10,7 +10,7 @@
 }
 
 .question-input__text:focus-visible {
-  border-bottom: 2px solid var(--btn-text-color);
+  border-bottom: 2px solid var(--heading-color);
   outline: none;
 }
 
