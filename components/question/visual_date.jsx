@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/*
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 
@@ -36,3 +38,4 @@ const StyledDay = styled.div`
     color: white;
   }
 `;
+*/

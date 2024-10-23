@@ -142,10 +142,12 @@ const StyledDatePicker = styled(DatePicker)`
 
 export function DateInput() {
   const { errorMsg: error, setErrorMsg, handleOkClick } = useSharedStates();
-  const { state, dispatch } = useQuestions();
+  //const { state, dispatch } = useQuestions();
+
+  const { dispatch } = useQuestions();
 
   const errorMsg = error.date ?? "";
-  const { date } = state;
+  //const { date } = state;
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 

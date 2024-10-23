@@ -2,6 +2,7 @@ import { useQuestions, useSharedStates } from "@/contexts";
 import { useHandleKeypress, useHandleScroll } from "@/hooks";
 import { useEffect } from "react";
 import { Question } from "../index";
+import Agradecimiento from "../question/Agradecimiento"; // Importamos el componente de agradecimiento
 
 export function MainContent() {
   const { questionNum, setShowIndustriesList } = useSharedStates();
@@ -25,19 +26,19 @@ export function MainContent() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Función para manejar el envío del formulario al backend
+  // Función para manejar el envío de datos al hacer clic en "Enviar" del agradecimiento
   const handleSubmit = async () => {
     try {
       const transformedState = {
-        nombre: state.firstName || null, // Si es undefined, asigna null
+        nombre: state.firstName || null,
         apellido: state.lastName || null,
         sexo: state.role || null,
         compania: state.industry || null,
         edad: state.age || null,
-        tecnologias: state.goals || [], // Asegúrate de que sea un array
+        tecnologias: state.goals || [],
         correo: state.email || null,
-        fechaCumpleanos: new Date(state.date) || null, // Convierte a Date
-        puntuacion: Number(state.score) || null, // Convierte a número
+        fechaCumpleanos: new Date(state.date) || null,
+        puntuacion: Number(state.score) || null,
       };
 
       const response = await fetch("/api/hello", {
@@ -49,8 +50,8 @@ export function MainContent() {
       });
 
       const data = await response.json();
-      console.log(transformedState);
-      console.log("Datos enviados:", data);
+      console.log("Datos enviados:", transformedState);
+      console.log("Respuesta del servidor:", data);
     } catch (error) {
       console.error("Error al enviar los datos:", error);
     }
@@ -154,12 +155,11 @@ export function MainContent() {
             outView={[now - 1, now + 1].includes(9)}
             outViewSlide={now - 1 === 9 ? "up" : "down"}
             inView={now === 9}
-            inViewSlide={"up"}
+            inViewSlide={prev === 8 ? "down" : "up"}
           />
         )}
 
-        {/* Agregar botón de envío al final del formulario */}
-        <button onClick={handleSubmit}>Enviar</button>
+        {now === 10 && <Agradecimiento handleSubmit={handleSubmit} />}
       </div>
     </section>
   );

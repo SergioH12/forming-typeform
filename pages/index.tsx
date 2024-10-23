@@ -12,21 +12,21 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Typeform</title>
+        <title>ioda Analytics</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="description"
           content="Typeform built for a take home assignment."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/ioda_melo (1).jpg" />
       </Head>
       <header className={styles.header}>
         <ProgressBar width={percent} />
         <Image
-          src="/growth-x-logo.png"
-          alt="GrowthX logo"
-          width={96}
-          height={24}
+          src="/LOGO IODA ANALYTICS - BLANCO (1).png"
+          alt="ioda Analytics"
+          width={145}
+          height={90}
         />
       </header>
       <main className={classNames(styles.main, questrialFont.className)}>
