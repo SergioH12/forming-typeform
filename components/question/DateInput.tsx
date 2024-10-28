@@ -15,6 +15,56 @@ import classNames from "classnames";
 import { format } from "date-fns";
 import { SET_DATE } from "@/reducers";
 
+
+
+function CustomHeader({ date, changeYear, changeMonth }: ReactDatePickerCustomHeaderProps) {
+  const currentYear = date.getFullYear();
+  
+  return (
+    <div className={styles["nav-container"]}>
+      <button
+        className={styles["nav-button"]}
+        onClick={() => changeMonth(date.getMonth() - 1)}
+      >
+        {"◀"}
+      </button>
+      <select
+        value={format(date, "MMMM", { locale: es })}
+        onChange={({ target: { value } }) =>
+          changeMonth(new Date(Date.parse(value + " 1, 2020")).getMonth())
+        }
+        className={classNames(styles["nav-select"], styles["dropdown"])}
+      >
+        {Array.from({ length: 12 }, (_, i) => (
+          <option
+            key={i}
+            value={format(new Date(2020, i), "MMMM", { locale: es })}
+          >
+            {format(new Date(2020, i), "MMMM", { locale: es })}
+          </option>
+        ))}
+      </select>
+      <select
+        value={currentYear}
+        onChange={({ target: { value } }) => changeYear(Number(value))}
+        className={classNames(styles["nav-select"], styles["dropdown"])}
+      >
+        {Array.from({ length: 100 }, (_, i) => ( // Aumenta el rango de años para scroll
+          <option key={i} value={currentYear - i}>
+            {currentYear - i}
+          </option>
+        ))}
+      </select>
+      <button
+        className={styles["nav-button"]}
+        onClick={() => changeMonth(date.getMonth() + 1)}
+      >
+        {"▶︎"}
+      </button>
+    </div>
+  );
+}
+
 // Sobrescribir estilos globales del calendario
 const DatePickerGlobalStyles = createGlobalStyle`
   .react-datepicker {
@@ -190,55 +240,7 @@ export function DateInput() {
           dropdownMode="select"
           showPopperArrow={false}
           calendarStartDay={0}
-          renderCustomHeader={({
-            date,
-            changeYear,
-            changeMonth,
-          }: ReactDatePickerCustomHeaderProps) => (
-            <div className="nav-container">
-              <button
-                className="nav-button"
-                onClick={() => changeMonth(date.getMonth() - 1)}
-              >
-                {"◀︎"}
-              </button>
-              <select
-                value={format(date, "MMMM", { locale: es })}
-                onChange={({ target: { value } }) =>
-                  changeMonth(
-                    new Date(Date.parse(value + " 1, 2020")).getMonth()
-                  )
-                }
-                className="nav-select"
-              >
-                {Array.from({ length: 12 }, (_, i) => (
-                  <option
-                    key={i}
-                    value={format(new Date(2020, i), "MMMM", { locale: es })}
-                  >
-                    {format(new Date(2020, i), "MMMM", { locale: es })}
-                  </option>
-                ))}
-              </select>
-              <select
-                value={date.getFullYear()}
-                onChange={({ target: { value } }) => changeYear(Number(value))}
-                className="nav-select"
-              >
-                {Array.from({ length: 10 }, (_, i) => (
-                  <option key={i} value={date.getFullYear() - i}>
-                    {date.getFullYear() - i}
-                  </option>
-                ))}
-              </select>
-              <button
-                className="nav-button"
-                onClick={() => changeMonth(date.getMonth() + 1)}
-              >
-                {"▶︎"}
-              </button>
-            </div>
-          )}
+          renderCustomHeader={(props) => <CustomHeader {...props} />}
         />
       </div>
 
